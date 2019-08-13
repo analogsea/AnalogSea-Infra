@@ -1,0 +1,43 @@
+---
+- hosts: all
+  remote_user: root
+  become: yes
+  gather_facts: no
+  vars_files:
+    - ./vars/vars.yaml
+  vars:
+    local_home: "{{ lookup('env','HOME') }}"
+  tasks:
+
+  - name: Add groups
+    group:
+      name: "{{ user }}"
+      state: present
+
+  - name: Add Unix Admins users
+    user: name={{ user }} group={{ user }} groups=sudo append=yes state=present createhome=yes shell=/bin/bash password="*"
+
+  # - name: Make sure we have a 'wheel' group
+  #   group:
+  #     name=wheel
+  #     state=present
+
+  # - name: Allow user group to have passwordless sudo
+  #   lineinfile:
+  #     dest: /etc/sudoers
+  #     state: present
+  #     regexp: '^%sudo'
+  #     line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+
+  - name: Allow user group to have passwordless sudo
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      insertafter: EOF
+      line: '%{{ user }} ALL=(ALL) NOPASSWD: ALL'
+
+  - name: add authorized keys
+    authorized_key:
+      user: "{{ user }}"
+      state: present
+      key: "{{ lookup('file', '{{ local_home }}/.ssh/id_rsa.pub') }}"
