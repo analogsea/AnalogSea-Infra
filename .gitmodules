@@ -1,0 +1,3 @@
+[submodule "KubeFormation"]
+	path = KubeFormation
+	url = git@github.com:iExalt/KubeFormation.git
