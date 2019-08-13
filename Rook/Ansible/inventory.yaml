@@ -1,0 +1,12 @@
+all:
+  vars:
+    ansible_user: cliaw
+    ansible_python_interpreter: /usr/bin/python3
+
+master:
+  hosts:
+    172.106.164.82:
+
+nodes:
+  hosts:
+    172.106.164.82:

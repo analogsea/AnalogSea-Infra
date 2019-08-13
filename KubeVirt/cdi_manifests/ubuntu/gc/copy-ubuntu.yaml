@@ -1,0 +1,17 @@
+apiVersion: cdi.kubevirt.io/v1alpha1
+kind: DataVolume
+metadata:
+  name: ubuntu-18.04
+spec:
+  source:
+    pvc:
+      namespace: default
+      name: ubuntu-template
+  pvc:
+    storageClassName: csi-rbd
+    # volumeMode: Block
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20Gi
