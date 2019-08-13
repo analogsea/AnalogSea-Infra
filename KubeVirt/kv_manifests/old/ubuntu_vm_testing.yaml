@@ -1,0 +1,28 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  creationTimestamp: null
+  labels:
+    kubevirt.io/vm: testvm
+  name: testvm
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: testvm
+    spec:
+      domain:
+        devices:
+          disks:
+          - disk:
+              bus: virtio
+            name: ubuntu
+        resources:
+          requests:
+            memory: 2Gi
+      terminationGracePeriodSeconds: 0
+      volumes:
+      - name: ubuntu
+        persistentVolumeClaim:
+          claimName: ubuntu16

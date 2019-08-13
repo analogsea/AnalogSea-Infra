@@ -1,0 +1,30 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  creationTimestamp: null
+  labels:
+    kubevirt.io/vm: clearvm
+  name: clearvm
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: clearvm
+    spec:
+      domain:
+        devices:
+#          blockMultiQueue: true
+          disks:
+          - name: datavolumedisk1
+            disk:
+              bus: virtio
+        resources:
+          requests:
+            memory: 2Gi
+            cpu: 2
+      terminationGracePeriodSeconds: 0
+      volumes:
+      - name: datavolumedisk1
+        dataVolume:
+          name: clear

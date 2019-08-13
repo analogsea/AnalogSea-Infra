@@ -1,0 +1,30 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  creationTimestamp: null
+  labels:
+    kubevirt.io/vm: cirros
+  name: cirros
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: cirros
+    spec:
+      domain:
+        devices:
+          blockMultiQueue: true
+          disks:
+          - disk:
+              bus: virtio
+            name: cirrosclaim
+        resources:
+          requests:
+            memory: 2Gi
+            cpu: 2
+      terminationGracePeriodSeconds: 0
+      volumes:
+      - name: cirrosclaim
+        persistentVolumeClaim:
+          claimName: cirros

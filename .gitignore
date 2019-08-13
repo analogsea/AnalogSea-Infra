@@ -1,0 +1,18 @@
+# Development files
+*.bak
+*_bak
+*.retry
+
+# Development folders
+logs
+scratch
+bench
+
+# Secret files
+**/secret.yaml
+**/csi_storageclass.yaml
+**/snapshotclass.yaml
+*token.txt
+
+# Ansible inventory file
+inventory.yaml

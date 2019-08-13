@@ -1,0 +1,45 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  creationTimestamp: null
+  labels:
+    kubevirt.io/vm: ubuntuvm
+  name: ubuntuvm
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: ubuntuvm
+    spec:
+      domain:
+        firmware:
+          # bootloader:
+          #   efi: {}
+        devices:
+          rng: {}
+          # blockMultiQueue: true
+          disks:
+          - name: datavolumedisk1
+            disk:
+              bus: virtio
+          - name: cd1
+            disk:
+        resources:
+          requests:
+            memory: 2Gi
+            cpu: 2
+      terminationGracePeriodSeconds: 0
+      volumes:
+      - name: datavolumedisk1
+        persistentVolumeClaim:
+          claimName: ubuntu-18.04
+      - name: cd1
+        cloudInitNoCloud:
+          userData: |
+            #cloud-config
+            ssh_pwauth: True
+            chpasswd:
+              expire: False
+              list: |
+                 root:password

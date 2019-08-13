@@ -1,0 +1,20 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachineInstance
+metadata:
+  name: testvmi-nocloud
+spec:
+  terminationGracePeriodSeconds: 0
+  domain:
+    resources:
+      requests:
+        memory: 1024M
+        cpu: 2
+    devices:
+      disks:
+      - name: datavolumedisk1
+        disk:
+          bus: virtio
+  volumes:
+  - name: datavolumedisk1
+    dataVolume:
+      name: cirros
