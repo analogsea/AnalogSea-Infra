@@ -6,3 +6,8 @@
 logs
 
 scratch
+
+bench
+
+secret.yaml
+csi_storageclass.yaml

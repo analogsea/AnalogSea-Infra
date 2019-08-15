@@ -52,7 +52,6 @@ data:
     config: |
       [global]
       bluestore default buffered read = true
-      osd objectstore = bluestore
       osd_pool_default_size = 128
       perf = True
       rocksdb perf = True
