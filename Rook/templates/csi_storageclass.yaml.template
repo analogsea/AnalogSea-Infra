@@ -7,7 +7,7 @@ parameters:
     # Comma separated list of Ceph monitors
     # if using FQDN, make sure csi plugin's dns policy is appropriate.
     #monitors: mon1:port,mon2:port,...
-    monitors: $MONITOR_BASE64_ENDPOINT
+    monitors: $MONITOR_ENDPOINT
 
     # if "monitors" parameter is not set, driver to get monitors from same
     # secret as admin/user credentials. "monValueFromSecret" provides the

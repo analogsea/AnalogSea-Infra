@@ -12,6 +12,8 @@ kubectl apply -f manifests/toolbox.yaml
 kubectl apply -f manifests/csi_nodeplugin_rbac.yaml
 kubectl apply -f manifests/csi_provisioner_rbac.yaml
 
+
+
 #kubectl apply -f manifests/secret.yaml
 #kubectl apply -f manifests/csi_storageclass.yaml
 
@@ -28,7 +30,7 @@ done
 
 ADMIN_BASE64_KEY=$(kubectl get secret rook-ceph-admin-keyring -n rook-ceph -o jsonpath="{['data']['keyring']}" | base64 --decode | grep "key" | awk '{ print $3}' | base64)
 
-MONITOR_BASE64_ENDPOINT=$(kubectl get svc rook-ceph-mon-a -n rook-ceph -o jsonpath="{['spec']['clusterIP']}" | awk '{print $1":6789"}' | tr -d '\n')
+MONITOR_ENDPOINT=$(kubectl get svc rook-ceph-mon-a -n rook-ceph -o jsonpath="{['spec']['clusterIP']}" | awk '{print $1":6789"}' | tr -d '\n')
 
 export MONITOR_BASE64_ENDPOINT ADMIN_BASE64_KEY
 
