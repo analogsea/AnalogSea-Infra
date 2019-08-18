@@ -9,5 +9,5 @@ scratch
 
 bench
 
-secret.yaml
-csi_storageclass.yaml
+**/secret.yaml
+**/csi_storageclass.yaml
