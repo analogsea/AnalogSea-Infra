@@ -32,7 +32,7 @@ ADMIN_BASE64_KEY=$(kubectl get secret rook-ceph-admin-keyring -n rook-ceph -o js
 
 MONITOR_ENDPOINT=$(kubectl get svc rook-ceph-mon-a -n rook-ceph -o jsonpath="{['spec']['clusterIP']}" | awk '{print $1":6789"}' | tr -d '\n')
 
-export MONITOR_BASE64_ENDPOINT ADMIN_BASE64_KEY
+export MONITOR_ENDPOINT ADMIN_BASE64_KEY
 
 cat templates/secret.yaml.template | envsubst > manifests/secret.yaml
 cat templates/csi_storageclass.yaml.template | envsubst > manifests/csi_storageclass.yaml
