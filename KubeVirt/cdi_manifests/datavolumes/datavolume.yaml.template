@@ -1,0 +1,16 @@
+apiVersion: cdi.kubevirt.io/v1alpha1
+kind: DataVolume
+metadata:
+  name: {{ name }}-template
+spec:
+  source:
+    http:
+      url: "{{ url }}"
+  pvc:
+    storageClassName: csi-rbd
+    volumeMode: Block
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 5Gi

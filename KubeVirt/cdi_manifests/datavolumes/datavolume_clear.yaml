@@ -1,0 +1,16 @@
+apiVersion: cdi.kubevirt.io/v1alpha1
+kind: DataVolume
+metadata:
+  name: clear-template
+spec:
+  source:
+    http:
+      url: "https://cdn.download.clearlinux.org/releases/30800/clear/clear-30800-kvm.img.xz"
+  pvc:
+    storageClassName: csi-rbd
+    volumeMode: Block
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 10Gi

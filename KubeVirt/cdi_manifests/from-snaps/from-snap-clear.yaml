@@ -1,0 +1,19 @@
+apiVersion: cdi.kubevirt.io/v1alpha1
+kind: DataVolume
+metadata:
+  name: clear
+spec:
+  source:
+    blank: {}
+  pvc:
+    storageClassName: csi-rbd
+    dataVolume:
+      name: clear-golden-snap
+      kind: VolumeSnapshot
+      apiGroup: snapshot.storage.k8s.io/v1alpha1
+    volumeMode: Block
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 7Gi

@@ -1,0 +1,16 @@
+apiVersion: cdi.kubevirt.io/v1alpha1
+kind: DataVolume
+metadata:
+  name: clear-template
+spec:
+  source:
+    http:
+      url: "https://cdn.download.clearlinux.org/releases/30820/clear/clear-30820-cloudguest.img.xz"
+  pvc:
+    storageClassName: csi-rbd
+    # volumeMode: Block
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 15Gi
