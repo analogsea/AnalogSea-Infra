@@ -11,3 +11,4 @@ bench
 
 **/secret.yaml
 **/csi_storageclass.yaml
+**/snapshotclass.yaml
