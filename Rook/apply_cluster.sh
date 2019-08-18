@@ -16,23 +16,19 @@ kubectl apply -f manifests/csi_provisioner_rbac.yaml
 #kubectl apply -f manifests/csi_storageclass.yaml
 
 
-kubectl wait --for=condition=available deployment/rook-ceph-tools -n rook-ceph > /dev/null
+kubectl wait --for=condition=available deployment/rook-ceph-osd-0 -n rook-ceph > /dev/null
 EXIT_CODE=$?
 while [ "$EXIT_CODE" != "0" ]
 do
   echo "Waiting for Rook deployment to become available..."
-  kubectl wait --for=condition=available deployment/rook-ceph-tools -n rook-ceph > /dev/null
+  kubectl wait --for=condition=available deployment/rook-ceph-osd-0 -n rook-ceph > /dev/null
   EXIT_CODE=$?
   sleep 2
 done
 
 ADMIN_BASE64_KEY=$(kubectl get secret rook-ceph-admin-keyring -n rook-ceph -o jsonpath="{['data']['keyring']}" | base64 --decode | grep "key" | awk '{ print $3}' | base64)
 
-echo $(kubectl get secret rook-ceph-admin-keyring -n rook-ceph -o jsonpath="{['data']['keyring']}" | base64 --decode | grep "key" | awk '{ print $3}')
-
 MONITOR_BASE64_ENDPOINT=$(kubectl get svc rook-ceph-mon-a -n rook-ceph -o jsonpath="{['spec']['clusterIP']}" | awk '{print $1":6789"}' | tr -d '\n')
-
-echo $(kubectl get svc rook-ceph-mon-a -n rook-ceph -o jsonpath="{['spec']['clusterIP']}" | awk '{print $1":6789"}')
 
 export MONITOR_BASE64_ENDPOINT ADMIN_BASE64_KEY
 
@@ -42,7 +38,7 @@ cat templates/csi_storageclass.yaml.template | envsubst > manifests/csi_storagec
 kubectl apply -f manifests/secret.yaml
 kubectl apply -f manifests/csi_storageclass.yaml
 
-
+./prep.sh
 # kubectl get secret rook-ceph-admin-keyring -n rook-ceph -o jsonpath="{['data']['keyring']}" | base64 --decode | grep "key" | awk '{ print $3}'
 #
 #
