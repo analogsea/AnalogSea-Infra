@@ -16,12 +16,12 @@ kubectl apply -f manifests/csi_provisioner_rbac.yaml
 #kubectl apply -f manifests/csi_storageclass.yaml
 
 
-kubectl wait --for=condition=available deployment/rook-ceph-osd-0 -n rook-ceph > /dev/null
+kubectl wait --for=condition=available deployment/rook-ceph-osd-0 -n rook-ceph > /dev/null 2>&1
 EXIT_CODE=$?
 while [ "$EXIT_CODE" != "0" ]
 do
   echo "Waiting for Rook deployment to become available..."
-  kubectl wait --for=condition=available deployment/rook-ceph-osd-0 -n rook-ceph > /dev/null
+  kubectl wait --for=condition=available deployment/rook-ceph-osd-0 -n rook-ceph > /dev/null 2>&1
   EXIT_CODE=$?
   sleep 2
 done
