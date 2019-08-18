@@ -36,9 +36,12 @@ export MONITOR_BASE64_ENDPOINT ADMIN_BASE64_KEY
 
 cat templates/secret.yaml.template | envsubst > manifests/secret.yaml
 cat templates/csi_storageclass.yaml.template | envsubst > manifests/csi_storageclass.yaml
+cat templates/snapshotclass.yaml.template | envsubst > manifests/snapshotclass.yaml
+
 
 kubectl apply -f manifests/secret.yaml
 kubectl apply -f manifests/csi_storageclass.yaml
+kubectl apply -f manifests/snapshotclass.yaml
 
 ./prep.sh
 # kubectl get secret rook-ceph-admin-keyring -n rook-ceph -o jsonpath="{['data']['keyring']}" | base64 --decode | grep "key" | awk '{ print $3}'
