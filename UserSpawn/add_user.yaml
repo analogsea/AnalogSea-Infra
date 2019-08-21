@@ -17,18 +17,6 @@
   - name: Add Unix Admins users
     user: name={{ user }} group={{ user }} groups=sudo append=yes state=present createhome=yes shell=/bin/bash password="*"
 
-  # - name: Make sure we have a 'wheel' group
-  #   group:
-  #     name=wheel
-  #     state=present
-
-  # - name: Allow user group to have passwordless sudo
-  #   lineinfile:
-  #     dest: /etc/sudoers
-  #     state: present
-  #     regexp: '^%sudo'
-  #     line: '%sudo ALL=(ALL) NOPASSWD: ALL'
-
   - name: Allow user group to have passwordless sudo
     lineinfile:
       dest: /etc/sudoers

@@ -11,68 +11,30 @@ metadata:
   name: rook-config-override
   namespace: rook-ceph
 data:
-  # config: |
-  #   [global]
-  #   mon_max_pg_per_osd        = 3000
-  #   max open files = 131072
-  #   osd max scrubs = 16
-  #   osd objectstore = bluestore
-  #   osd op threads = 2
-  #   osd pool default min size = 1
-  #   osd pool default size = 2
-  #   osd scrub load threshold = 0.01
-  #   osd scrub max interval = 137438953472
-  #   osd scrub min interval = 137438953472
-  #   perf = True
-  #   rocksdb perf = True
-  #   throttler perf counter = False
-  #   rbd readahead disable after bytes = 0
-  #   rbd readahead max bytes = 4194304
-  #
-  #
-  #   [osd]
-  #   bluestore cache autotune = 0
-  #   bluestore cache kv ratio = 0.2
-  #   bluestore cache meta ratio = 0.8
-  #   bluestore cache size = 8G
-  #   bluestore csum type = none
-  #   bluestore extent map shard max size = 200
-  #   bluestore extent map shard min size = 50
-  #   bluestore extent map shard target size = 100
-  #   bluestore rocksdb options = compression=kNoCompression,max_write_buffer_number=32,min_write_buffer_number_to_merge=2,recycle_log_file_num=32,compaction_style=kCompactionStyleLevel,write_buffer_size=67108864,target_file_size_base=67108864,max_background_compactions=31,level0_file_num_compaction_trigger=8,level0_slowdown_writes_trigger=32,level0_stop_writes_trigger=64,max_bytes_for_level_base=536870912,compaction_threads=32,max_bytes_for_level_multiplier=8,flusher_threads=8,compaction_readahead_size=2MB
-  #   osd map share max epochs = 100
-  #   osd max backfills = 5
-  #   osd memory target = 4294967296
-  #   osd op num shards = 8
-  #   osd op num threads per shard = 2
-  #    osd min pg log entries = 10
-  #    osd max pg log entries = 10
-  #    osd pg log dups tracked = 10
-  #    osd pg log trim min = 10
-    config: |
-      [global]
-      bluestore default buffered read = true
-      osd_pool_default_size = 128
-      perf = True
-      rocksdb perf = True
-      throttler perf counter = False
+  config: |
+    [global]
+    bluestore default buffered read = true
+    osd_pool_default_size = 128
+    perf = True
+    rocksdb perf = True
+    throttler perf counter = False
 
-      [osd]
-      osd_memory_target = 6000000000
-      bluestore_csum_type = xxhash64
-      bluestore_rocksdb_options = compression=kNoCompression,max_write_buffer_number=64,min_write_buffer_number_to_merge=32,recycle_log_file_num=64,compaction_style=kCompactionStyleLevel,write_buffer_size=4MB,target_file_size_base=4MB,max_background_compactions=64,level0_file_num_compaction_trigger=64,level0_slowdown_writes_trigger=128,level0_stop_writes_trigger=256,max_bytes_for_level_base=6GB,compaction_threads=32,flusher_threads=8,compaction_readahead_size=2MB
+    [osd]
+    osd_memory_target = 6000000000
+    bluestore_csum_type = xxhash64
+    bluestore_rocksdb_options = compression=kNoCompression,max_write_buffer_number=64,min_write_buffer_number_to_merge=32,recycle_log_file_num=64,compaction_style=kCompactionStyleLevel,write_buffer_size=4MB,target_file_size_base=4MB,max_background_compactions=64,level0_file_num_compaction_trigger=64,level0_slowdown_writes_trigger=128,level0_stop_writes_trigger=256,max_bytes_for_level_base=6GB,compaction_threads=32,flusher_threads=8,compaction_readahead_size=2MB
 
-      bluestore_extent_map_shard_min_size = 50
-      bluestore_extent_map_shard_max_size = 200
-      bluestore_extent_map_shard_target_size = 100
-      osd_min_pg_log_entries = 10
-      osd_max_pg_log_entries = 10
-      osd_pg_log_dups_tracked = 10
-      osd_pg_log_trim_min = 10
+    bluestore_extent_map_shard_min_size = 50
+    bluestore_extent_map_shard_max_size = 200
+    bluestore_extent_map_shard_target_size = 100
+    osd_min_pg_log_entries = 10
+    osd_max_pg_log_entries = 10
+    osd_pg_log_dups_tracked = 10
+    osd_pg_log_trim_min = 10
 
 
-      [client]
-      rbd readahead disable after bytes = 0
-      rbd readahead max bytes = 4194304
-      rbd_cache = False
-      rbd_cache_writethrough_until_flush = False
+    [client]
+    rbd readahead disable after bytes = 0
+    rbd readahead max bytes = 4194304
+    rbd_cache = False
+    rbd_cache_writethrough_until_flush = False

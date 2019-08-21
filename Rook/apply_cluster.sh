@@ -13,12 +13,6 @@ kubectl apply -f manifests/toolbox.yaml
 kubectl apply -f manifests/csi_nodeplugin_rbac.yaml
 kubectl apply -f manifests/csi_provisioner_rbac.yaml
 
-
-
-#kubectl apply -f manifests/secret.yaml
-#kubectl apply -f manifests/csi_storageclass.yaml
-
-
 kubectl wait --for=condition=available deployment/rook-ceph-osd-0 -n rook-ceph > /dev/null 2>&1
 EXIT_CODE=$?
 while [ "$EXIT_CODE" != "0" ]
@@ -39,13 +33,8 @@ cat templates/secret.yaml.template | envsubst > manifests/secret.yaml
 cat templates/csi_storageclass.yaml.template | envsubst > manifests/csi_storageclass.yaml
 cat templates/snapshotclass.yaml.template | envsubst > manifests/snapshotclass.yaml
 
-
 kubectl apply -f manifests/secret.yaml
 kubectl apply -f manifests/csi_storageclass.yaml
 kubectl apply -f manifests/snapshotclass.yaml
 
 ./prep.sh
-# kubectl get secret rook-ceph-admin-keyring -n rook-ceph -o jsonpath="{['data']['keyring']}" | base64 --decode | grep "key" | awk '{ print $3}'
-#
-#
-# "$(kubectl get svc rook-ceph-mon-a -n rook-ceph -o jsonpath="{['spec']['clusterIP']}"):6789"
