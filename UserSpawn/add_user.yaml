@@ -15,7 +15,16 @@
       state: present
 
   - name: Add Unix Admins users
-    user: name={{ user }} group={{ user }} groups=sudo append=yes state=present createhome=yes shell=/bin/bash password="*"
+    user:
+      name: "{{ user }}"
+      group: "{{ user }}"
+      groups:
+        - sudo
+      append: yes
+      state: present
+      createhome: yes
+      shell: /bin/bash
+      password: "*"
 
   - name: Allow user group to have passwordless sudo
     lineinfile:
