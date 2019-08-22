@@ -1,0 +1,17 @@
+apiVersion: cdi.kubevirt.io/v1alpha1
+kind: DataVolume
+metadata:
+  name: clear-block
+spec:
+  source:
+    pvc:
+      namespace: default
+      name: clear-template-block
+  pvc:
+    storageClassName: csi-rbd
+    volumeMode: Block
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 25Gi
