@@ -1,0 +1,3 @@
+cd "${0%/*}"
+kubectl apply -f manifests/concourse_namespace.yaml
+helm install concourse stable/concourse -n concourse -f manifests/values.yaml
