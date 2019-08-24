@@ -1,0 +1,17 @@
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: clear-block-from-snapshot
+spec:
+  storageClassName: csi-rbd
+  volumeMode: Block
+  dataSource:
+    name: clear-golden-snap
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
