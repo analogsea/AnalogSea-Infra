@@ -1,0 +1,15 @@
+apiVersion: getambassador.io/v1
+kind: Mapping
+metadata:
+  name: concourse-cli-external
+  labels:
+    app: concourse-web
+  namespace: concourse
+spec:
+  prefix: /api/v1/cli
+  rewrite: ""
+  host: "clement\\..*"
+  host_regex: true
+  service: concourse-web.concourse:8080
+  use_websocket: true
+  timeout_ms: 100000000
