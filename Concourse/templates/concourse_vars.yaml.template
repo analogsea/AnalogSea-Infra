@@ -302,7 +302,7 @@ concourse:
       ## When true, namespaces are not deleted when the release is deleted.
       ## Irrelevant if the namespaces are not created by this chart.
       ##
-      keepNamespaces: true
+      keepNamespaces: false
 
       ## Path to Kubernetes config when running ATC outside Kubernetes.
       ##
@@ -1780,7 +1780,7 @@ secrets:
 
   ## List of `username:password` or `username:bcrypted_password` combinations for all your local concourse users.
   ##
-  localUsers: "test:test"
+  localUsers: "admin:$CONCOURSE_ADMIN_PASSWORD"
 
   ## The TLS certificate and private key for the web component to be able to terminate
   ## TLS connections.

@@ -1,0 +1,12 @@
+apiVersion: getambassador.io/v1
+kind: Mapping
+metadata:
+  name: concourse-web-external
+  labels:
+    app: concourse-web
+  namespace: concourse
+spec:
+  prefix: /
+  host: "clement\\..*"
+  host_regex: true
+  service: concourse-web.concourse:8080

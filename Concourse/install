@@ -1,3 +1,7 @@
 cd "${0%/*}"
 kubectl apply -f manifests/concourse_namespace.yaml
-helm install concourse stable/concourse -n concourse -f manifests/values.yaml
+CONCOURSE_ADMIN_PASSWORD=$(openssl rand -base64 32 | tr -d /=+ | cut -c -16)
+export CONCOURSE_ADMIN_PASSWORD
+cat templates/concourse_vars.yaml.template | envsubst > manifests/concourse_vars.yaml
+helm install concourse stable/concourse -n concourse -f manifests/concourse_vars.yaml
+kubectl apply -f manifests/concourse-web-external.yaml

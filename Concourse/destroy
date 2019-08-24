@@ -1,0 +1,3 @@
+cd "${0%/*}"
+helm uninstall concourse -n concourse
+kubectl delete ns concourse
