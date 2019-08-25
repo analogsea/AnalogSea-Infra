@@ -1,0 +1,3 @@
+cd "${0%/*}"
+helm uninstall jenkins -n jenkins
+kubectl delete ns jenkins
