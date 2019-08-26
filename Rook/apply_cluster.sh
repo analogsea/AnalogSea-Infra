@@ -6,12 +6,15 @@ kubectl apply -f manifests/operator_with_csi.yaml
 kubectl apply -f manifests/cluster.yaml
 
 kubectl apply -f manifests/block_pools.yaml
+kubectl apply -f manifests/filesystem.yaml
 kubectl apply -f manifests/dashboard_external_32350.yaml
 kubectl apply -f manifests/mgr-restful.yaml
 kubectl apply -f manifests/toolbox.yaml
 
 kubectl apply -f manifests/csi_nodeplugin_rbac.yaml
 kubectl apply -f manifests/csi_provisioner_rbac.yaml
+kubectl apply -f manifests/csi-nodeplugin-rbac-cephfs.yaml
+kubectl apply -f manifests/csi-provisioner-rbac-cephfs.yaml
 
 kubectl wait --for=condition=available deployment/rook-ceph-osd-0 -n rook-ceph > /dev/null 2>&1
 EXIT_CODE=$?
@@ -37,4 +40,4 @@ kubectl apply -f manifests/secret.yaml
 kubectl apply -f manifests/csi_storageclass.yaml
 kubectl apply -f manifests/snapshotclass.yaml
 
-./prep.sh
+# ./prep.sh

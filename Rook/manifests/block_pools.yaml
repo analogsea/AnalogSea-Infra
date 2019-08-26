@@ -7,3 +7,15 @@ spec:
   failureDomain: host
   replicated:
     size: 1
+
+---
+
+apiVersion: ceph.rook.io/v1
+kind: CephBlockPool
+metadata:
+  name: cephfs-pool
+  namespace: rook-ceph
+spec:
+  failureDomain: host
+  replicated:
+    size: 1
