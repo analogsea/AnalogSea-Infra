@@ -1,0 +1,3 @@
+cd "${0%/*}"
+helm uninstall ambassador-http -n ambassador
+kubectl delete -f manifests/ambassador-namespace.yaml

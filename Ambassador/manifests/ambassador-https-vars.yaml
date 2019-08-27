@@ -1,0 +1,17 @@
+adminService:
+  create: true
+  nodePort: true
+replicaCount: 1
+service:
+  ports:
+  - name: https
+    port: 443
+    targetPort: 8443
+    nodePort: 443
+  type: NodePort
+env:
+  AMBASSADOR_ID: ambassador-https
+crds:
+  create: false
+  keep: false
+  enabled: true

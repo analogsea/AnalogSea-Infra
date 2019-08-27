@@ -1,0 +1,17 @@
+adminService:
+  create: true
+  nodePort: true
+replicaCount: 1
+service:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    nodePort: 80
+  type: NodePort
+env:
+  AMBASSADOR_ID: ambassador-http
+crds:
+  create: true
+  keep: false
+  enabled: true

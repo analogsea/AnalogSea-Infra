@@ -1,0 +1,4 @@
+cd "${0%/*}"
+kubectl delete -f ambassador-entry.yaml
+kubectl delete -f ambassador-rbac.yaml
+kubectl delete -f ambassador-namespace.yaml

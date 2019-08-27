@@ -1,0 +1,4 @@
+cd "${0%/*}"
+kubectl apply -f ambassador-namespace.yaml
+kubectl apply -f ambassador-rbac.yaml
+kubectl apply -f ambassador-entry.yaml
