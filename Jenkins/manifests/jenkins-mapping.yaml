@@ -10,3 +10,4 @@ spec:
   service: jenkins.jenkins:8080
   timeout_ms: 10000
   connect_timeout_ms: 10000
+  ambassador_id: ambassador-http
