@@ -7,7 +7,11 @@ kubectl apply -f manifests/cluster.yaml
 
 kubectl apply -f manifests/block_pools.yaml
 kubectl apply -f manifests/filesystem.yaml
-kubectl apply -f manifests/dashboard_external_32350.yaml
+kubectl apply -f manifests/ceph-certificate-mapping.yaml
+kubectl apply -f manifests/ceph-certificate.yaml
+kubectl apply -f manifests/ceph-tlscontext.yaml
+kubectl apply -f manifests/ceph-mapping.yaml
+kubectl apply -f manifests/dashboard-external-https.yaml
 kubectl apply -f manifests/mgr-restful.yaml
 kubectl apply -f manifests/toolbox.yaml
 
@@ -23,8 +27,9 @@ do
   echo "Waiting for Rook deployment to become available..."
   kubectl wait --for=condition=available deployment/rook-ceph-osd-0 -n rook-ceph > /dev/null 2>&1
   EXIT_CODE=$?
-  sleep 2
+  sleep 4
 done
+echo "First OSD created, continuing..."
 
 ADMIN_BASE64_KEY=$(kubectl get secret rook-ceph-admin-keyring -n rook-ceph -o jsonpath="{['data']['keyring']}" | base64 --decode | grep "key" | awk '{ print $3}' | base64)
 
