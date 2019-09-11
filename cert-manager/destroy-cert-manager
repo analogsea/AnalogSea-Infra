@@ -1,5 +1,5 @@
 cd "${0%/*}"
 
+helm uninstall cert-manager -n ambassador
 kubectl delete -f manifests/crds.yaml
-helm uninstall cert-manager -n cert-manager
-kubectl delete -f manifests/cert-manager-namespace.yaml
+# kubectl delete -f manifests/cert-manager-namespace.yaml

@@ -1,0 +1,12 @@
+apiVersion: getambassador.io/v1
+kind: Mapping
+metadata:
+  name: prod-test-mapping
+  namespace: default
+  # namespace: jenkins
+spec:
+  prefix: /
+  host: "prod\\..*"
+  host_regex: true
+  service: hello-kubernetes.default
+  ambassador_id: ambassador-https
