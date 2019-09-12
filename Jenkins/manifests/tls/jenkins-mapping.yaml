@@ -1,0 +1,11 @@
+apiVersion: getambassador.io/v1
+kind: Mapping
+metadata:
+  name: jenkins-external
+  namespace: jenkins
+spec:
+  prefix: /
+  host: jenkins.analogsea.ca
+  host_regex: true
+  service: jenkins.jenkins:80
+  ambassador_id: ambassador-https

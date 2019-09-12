@@ -1,0 +1,13 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: jenkins
+  namespace: ambassador
+spec:
+  secretName: jenkins-cert
+  issuerRef:
+    name: letsencrypt-prod
+    kind: Issuer
+  commonName: jenkins.analogsea.ca
+  dnsNames:
+  - jenkins.analogsea.ca

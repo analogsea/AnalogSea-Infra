@@ -45,4 +45,4 @@ kubectl apply -f manifests/secret.yaml
 kubectl apply -f manifests/csi_storageclass.yaml
 kubectl apply -f manifests/snapshotclass.yaml
 
-# ./prep.sh
+./prep.sh

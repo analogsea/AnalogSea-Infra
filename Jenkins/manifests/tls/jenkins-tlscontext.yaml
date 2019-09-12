@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v1
+kind: TLSContext
+metadata:
+  name: jenkins-tls
+  namespace: ambassador
+spec:
+  hosts: jenkins.analogsea.ca
+  secret: jenkins-cert
+  ambassador_id: ambassador-https
