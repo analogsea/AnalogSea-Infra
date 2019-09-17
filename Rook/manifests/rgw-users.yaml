@@ -1,0 +1,8 @@
+apiVersion: ceph.rook.io/v1
+kind: CephObjectStoreUser
+metadata:
+  name: spinnaker
+  namespace: rook-ceph
+spec:
+  store: ceph-object
+  displayName: "Spinnaker user"

@@ -1,0 +1,13 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: rgw
+  namespace: ambassador
+spec:
+  secretName: rgw-cert
+  issuerRef:
+    name: letsencrypt-prod
+    kind: Issuer
+  commonName: s3.analogsea.ca
+  dnsNames:
+  - s3.analogsea.ca

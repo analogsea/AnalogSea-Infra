@@ -7,10 +7,11 @@ kubectl apply -f manifests/cluster.yaml
 
 kubectl apply -f manifests/block_pools.yaml
 kubectl apply -f manifests/filesystem.yaml
-kubectl apply -f manifests/tls/ceph-certificate-mapping.yaml
-kubectl apply -f manifests/tls/ceph-certificate.yaml
-kubectl apply -f manifests/tls/ceph-tlscontext.yaml
-kubectl apply -f manifests/tls/ceph-mapping.yaml
+# kubectl apply -f manifests/tls/ceph-certificate-mapping.yaml
+# kubectl apply -f manifests/tls/ceph-certificate.yaml
+# kubectl apply -f manifests/tls/ceph-tlscontext.yaml
+# kubectl apply -f manifests/tls/ceph-mapping.yaml
+kubectl apply -f manifests/tls
 kubectl apply -f manifests/dashboard-external-https.yaml
 kubectl apply -f manifests/mgr-restful.yaml
 kubectl apply -f manifests/toolbox.yaml
@@ -45,4 +46,9 @@ kubectl apply -f manifests/secret.yaml
 kubectl apply -f manifests/csi_storageclass.yaml
 kubectl apply -f manifests/snapshotclass.yaml
 
+kubectl apply -f rgw.yaml
+echo "Waiting for rgw to come up..."
+sleep 20
+kubectl apply -f rgw-users.yaml
+sleep 5
 ./prep.sh
