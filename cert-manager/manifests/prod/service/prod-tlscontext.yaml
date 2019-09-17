@@ -4,6 +4,7 @@ metadata:
   name: prod-test-tls
   namespace: ambassador
 spec:
-  hosts: prod.analogsea.ca
+  hosts:
+  - prod.analogsea.ca
   secret: prod-cert
   ambassador_id: ambassador-https
