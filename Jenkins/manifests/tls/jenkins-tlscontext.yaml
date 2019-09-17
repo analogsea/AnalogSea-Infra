@@ -4,6 +4,7 @@ metadata:
   name: jenkins-tls
   namespace: ambassador
 spec:
-  hosts: jenkins.analogsea.ca
+  hosts:
+  - jenkins.analogsea.ca
   secret: jenkins-cert
   ambassador_id: ambassador-https
