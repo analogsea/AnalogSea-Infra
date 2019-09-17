@@ -4,6 +4,7 @@ metadata:
   name: ceph-tls
   namespace: ambassador
 spec:
-  hosts: ceph.analogsea.ca
+  hosts:
+  - ceph.analogsea.ca
   secret: ceph-cert
   ambassador_id: ambassador-https
