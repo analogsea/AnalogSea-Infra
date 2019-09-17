@@ -1,4 +1,4 @@
 cd "${0%/*}"
-./enable_mgr.sh
-./get_password.sh
-./set_pool.sh
+./enable-mgr.sh
+./get-password.sh
+./set-pool.sh
