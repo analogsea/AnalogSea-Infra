@@ -9,7 +9,8 @@ scratch
 bench
 
 # Secret files
-**/secret.yaml
+*secret.txt
+secret.yaml
 **/csi_storageclass.yaml
 **/snapshotclass.yaml
 *token.txt
