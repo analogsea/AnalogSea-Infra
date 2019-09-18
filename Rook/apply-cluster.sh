@@ -46,9 +46,9 @@ kubectl apply -f manifests/secret.yaml
 kubectl apply -f manifests/csi_storageclass.yaml
 kubectl apply -f manifests/snapshotclass.yaml
 
-kubectl apply -f rgw.yaml
+kubectl apply -f manifests/rgw.yaml
 echo "Waiting for rgw to come up..."
-sleep 20
-kubectl apply -f rgw-users.yaml
+sleep 40
+kubectl apply -f manifests/rgw-users.yaml
 sleep 5
 ./prep.sh
