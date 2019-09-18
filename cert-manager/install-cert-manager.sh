@@ -17,7 +17,8 @@ helm repo update
 # Install the cert-manager Helm chart
 helm install cert-manager -n ambassador --version v0.10.0 jetstack/cert-manager
 
-sleep 20
+echo "Waiting for cert-manager to come up..."
+sleep 30
 
 # Install issuer
 kubectl apply -f manifests/prod/cert-manager/prod-issuer.yaml
