@@ -1,6 +1,5 @@
 git:
-  # url: git@github.com:analogsea/AnalogSea-Flux
-  url: git@github.com:analogsea/flux-get-started.git
+  url: git@github.com:analogsea/AnalogSea-Flux
   branch: master
   path: namespaces,workloads
   user: iExalt
