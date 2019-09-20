@@ -1,0 +1,18 @@
+git:
+  # url: git@github.com:analogsea/AnalogSea-Flux
+  url: git@github.com:analogsea/flux-get-started.git
+  branch: master
+  path: namespaces,workloads
+  user: iExalt
+  email: cklliaw@edu.uwaterloo.ca
+  signingKey: $GPG_KEY_ID
+  pollInterval: "5s"
+  ciSkip: true
+
+registry:
+  pollInterval: "5s"
+  rps: "1000"
+  burst: "250"
+
+gpgKeys:
+  secretName: flux-gpg-signing-key
