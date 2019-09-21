@@ -14,4 +14,4 @@ do
 done
 echo "Jenkins online, continuing..."
 
-printf $(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
+./get-password.sh
