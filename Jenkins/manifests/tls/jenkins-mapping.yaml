@@ -9,3 +9,4 @@ spec:
   host_regex: true
   service: jenkins.jenkins:8080
   ambassador_id: ambassador-https
+  timeout_ms: 10000
