@@ -7,11 +7,17 @@ kubectl apply -f manifests/cluster.yaml
 
 kubectl apply -f manifests/block_pools.yaml
 kubectl apply -f manifests/filesystem.yaml
-# kubectl apply -f manifests/tls/ceph-certificate-mapping.yaml
-# kubectl apply -f manifests/tls/ceph-certificate.yaml
-# kubectl apply -f manifests/tls/ceph-tlscontext.yaml
-# kubectl apply -f manifests/tls/ceph-mapping.yaml
-kubectl apply -f manifests/tls
+
+kubectl apply -f manifests/tls/ceph-certificate-mapping.yaml
+kubectl apply -f manifests/tls/ceph-certificate.yaml
+kubectl apply -f manifests/tls/ceph-tlscontext.yaml
+kubectl apply -f manifests/tls/ceph-mapping.yaml
+
+kubectl apply -f manifests/tls/rgw-certificate-mapping.yaml
+kubectl apply -f manifests/tls/rgw-certificate.yaml
+kubectl apply -f manifests/tls/rgw-tlscontext.yaml
+kubectl apply -f manifests/tls/rgw-mapping.yaml
+
 kubectl apply -f manifests/dashboard-external-https.yaml
 kubectl apply -f manifests/mgr-restful.yaml
 kubectl apply -f manifests/toolbox.yaml
