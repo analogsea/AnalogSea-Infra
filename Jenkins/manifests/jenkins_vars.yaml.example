@@ -6,34 +6,48 @@ master:
     - "blueocean:1.19.0"
     - "kubernetes:1.19.0"
     - "build-timestamp:1.0.3"
+    - "configuration-as-code:1.30"
+    - "saferestart:0.3"
   overwritePlugins: false
+
+  JCasC:
+    enabled: true
+    defaultConfig: true
+    pluginVersion: "1.30"
+    configScripts:
+      creds: |
+        credentials:
+          system:
+            domainCredentials:
+              - credentials:
+                - usernamePassword:
+                    scope: GLOBAL
+                    id: "X-docker-creds"
+                    username: "X"
+                    password: "X"
+                    description: "X Docker Hub credentials"
+                - string:
+                    scope: GLOBAL
+                    id: "github-access-token"
+                    secret: "X"
+                    description: "X Github Access Token"
+      github-stuff: |
+        unclassified:
+          githubpluginconfig:
+            configs:
+              - name: "Github"
+                apiUrl: "https://api.github.com"
+                credentialsId: "github-access-token"
+                manageHooks: true
+
+      buildTimestamp: |
+        unclassified:
+          buildTimestamp:
+            enableBuildTimestamp: true
+            pattern: "yyyyMMdd'T'HHmmss'Z'"
+            timezone: "Etc/UTC"
+
 persistence:
   enabled: true
   annotations:
     volume.beta.kubernetes.io/storage-class: csi-rbd
-
-configScripts:
-  creds: |
-    credentials:
-      system:
-        domainCredentials:
-          - credentials:
-            - usernamePassword:
-                scope: GLOBAL
-                id: "XXXXXX-docker-creds"
-                username: "XXXXXX"
-                password: XXXXXX!
-                description: "XXXXXX Docker Hub credentials"
-            - string:
-                scope: GLOBAL
-                id: "github-access-token"
-                secret: "XXXXXX"
-                description: "XXXXXX Github Access Token"
-  github-stuff: |
-    unclassified:
-      githubpluginconfig:
-        configs:
-          - name: "Github"
-            apiUrl: "https://api.github.com"
-            credentialsId: "github-access-token"
-            manageHooks: true
