@@ -1,0 +1,33 @@
+master:
+  serviceType: ClusterIP
+  image: "jenkins/jenkins"
+  tag: "lts"
+  installPlugins:
+    - "blueocean:1.19.0"
+    - "kubernetes:1.19.0"
+    - "build-timestamp:1.0.3"
+  overwritePlugins: false
+persistence:
+  enabled: true
+  annotations:
+    volume.beta.kubernetes.io/storage-class: csi-rbd
+
+configScripts:
+  creds:
+    credentials:
+      system:
+        domainCredentials:
+          - credentials:
+            - string:
+                scope: GLOBAL
+                id: "secret-text"
+                secret: ${SecretText} #Load from Environment Variable
+                description: "Secret Text"
+  github-stuff: |
+    unclassified:
+      githubpluginconfig:
+        configs:
+          - name: "InHouse GitHub EE"
+            apiUrl: "https://api.github.com"
+            credentialsId: "[GitHubEEUser]"
+            manageHooks: true
