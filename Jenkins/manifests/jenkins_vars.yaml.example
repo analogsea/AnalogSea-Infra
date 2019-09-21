@@ -13,21 +13,27 @@ persistence:
     volume.beta.kubernetes.io/storage-class: csi-rbd
 
 configScripts:
-  creds:
+  creds: |
     credentials:
       system:
         domainCredentials:
           - credentials:
+            - usernamePassword:
+                scope: GLOBAL
+                id: "XXXXXX-docker-creds"
+                username: "XXXXXX"
+                password: XXXXXX!
+                description: "XXXXXX Docker Hub credentials"
             - string:
                 scope: GLOBAL
-                id: "secret-text"
-                secret: ${SecretText} #Load from Environment Variable
-                description: "Secret Text"
+                id: "github-access-token"
+                secret: "XXXXXX"
+                description: "XXXXXX Github Access Token"
   github-stuff: |
     unclassified:
       githubpluginconfig:
         configs:
-          - name: "InHouse GitHub EE"
+          - name: "Github"
             apiUrl: "https://api.github.com"
-            credentialsId: "[GitHubEEUser]"
+            credentialsId: "github-access-token"
             manageHooks: true
