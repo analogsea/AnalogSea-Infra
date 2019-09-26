@@ -1,0 +1,10 @@
+apiVersion: getambassador.io/v1
+kind: TLSContext
+metadata:
+  name: $MODULE_NAME-tls
+  namespace: $MODULE_NAMESPACE
+spec:
+  hosts:
+  - $MODULE_NAME.analogsea.ca
+  secret: $MODULE_NAME-cert
+  ambassador_id: ambassador-https

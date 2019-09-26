@@ -1,0 +1,11 @@
+apiVersion: getambassador.io/v1
+kind: Mapping
+metadata:
+  name: $MODULE_NAME-external
+  namespace: $MODULE_NAMESPACE
+spec:
+  prefix: /
+  host: $MODULE_NAME.analogsea.ca
+  host_regex: true
+  service: $MODULE_NAME.jenkins:8080
+  ambassador_id: ambassador-https

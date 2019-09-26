@@ -1,0 +1,13 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: $MODULE_NAME
+  namespace: $MODULE_NAMESPACE
+spec:
+  secretName: $MODULE_NAME-cert
+  issuerRef:
+    name: letsencrypt-prod
+    kind: Issuer
+  commonName: $MODULE_NAME.analogsea.ca
+  dnsNames:
+  - $MODULE_NAME.analogsea.ca
