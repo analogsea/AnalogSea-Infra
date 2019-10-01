@@ -11,6 +11,11 @@ export GPG_KEY_ID
 
 cat templates/flux_vars.yaml.template | envsubst > manifests/flux_vars.yaml
 
+if [ -f "manifests/sealed-flux-git-ssh-key.yaml" ]; then
+  kubectl apply -f manifests/sealed-flux-git-ssh-key.yaml
+  sleep 8
+fi
+
 helm install flux fluxcd/flux -n flux -f manifests/flux_vars.yaml
 
 kubectl wait --for=condition=available deployment/flux -n flux > /dev/null 2>&1
