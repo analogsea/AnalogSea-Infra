@@ -3,8 +3,9 @@ git:
   branch: master
   path: namespaces,workloads
   user: iExalt
-  email: cklliaw@edu.uwaterloo.ca
+  email: cklliaw@uwaterloo.ca
   signingKey: $GPG_KEY_ID
+  secretName: flux-ssh-key
   pollInterval: "5s"
   ciSkip: true
 
