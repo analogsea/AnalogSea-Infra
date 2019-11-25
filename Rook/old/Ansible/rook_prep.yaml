@@ -1,0 +1,52 @@
+- hosts:           all
+  gather_facts:    no
+  become:          yes
+  become_user:     root
+  tasks:
+
+  - name:            Add ceph keys
+    apt_key:
+      url:           https://download.ceph.com/keys/release.asc
+      state:         present
+
+  - name:            Add ceph repo
+    apt_repository:
+      repo:          deb https://download.ceph.com/debian-nautilus/ bionic main
+      state:         present
+
+  - name:            Install packages
+    apt:
+      name:          "{{ packages }}"
+      force_apt_get: yes
+      update_cache:  yes
+    vars:
+      packages:
+        - ceph-common
+        - liblz4-1
+        - make
+        - python3-pip
+        - pkg-config
+        - tuned
+
+  - name: Get tuned
+    get_url:
+      url: https://github.com/redhat-performance/tuned/archive/v2.12.0.tar.gz
+      dest: /root
+
+  - name: Extract tuned
+    unarchive:
+      src: /root/tuned-2.12.0.tar.gz
+      dest: /root
+      remote_src: yes
+
+  - name: Install tuned python packages
+    pip:
+      requirements: /root/tuned-2.12.0/requirements.txt
+
+  - name: Install tuned
+    make:
+      chdir: /root/tuned-2.12.0
+      target: install
+
+  - name: Set tuned to virtual-host
+    shell: tuned-adm profile throughput-performance
