@@ -1,0 +1,8 @@
+apiVersion: ceph.rook.io/v1
+kind: CephObjectStoreUser
+metadata:
+  name: analogsea
+  namespace: rook-ceph
+spec:
+  store: object-store
+  displayName: AnalogSea user

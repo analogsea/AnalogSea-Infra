@@ -7,5 +7,4 @@ spec:
   failureDomain: host
   replicated:
     size: 1
-  # BE CAREFUL WITH DEVICECLASS
-  # deviceClass: hdd
+  deviceClass: hdd

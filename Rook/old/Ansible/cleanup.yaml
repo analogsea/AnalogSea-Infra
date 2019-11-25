@@ -1,0 +1,9 @@
+- hosts:           nodes
+  gather_facts:    no
+  become:          yes
+  become_user:     root
+  tasks:
+  - name:          Clean Rook data
+    file:
+      path: /var/lib/rook
+      state: absent
