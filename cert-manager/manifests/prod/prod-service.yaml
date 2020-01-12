@@ -9,5 +9,5 @@ spec:
   - port: 80
     targetPort: 8089
   selector:
-    certmanager.k8s.io/acme-http01-solver: "true"
+    acme.cert-manager.io/http01-solver: "true"
     env: "prod"

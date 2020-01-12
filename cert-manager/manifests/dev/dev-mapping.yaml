@@ -1,0 +1,12 @@
+apiVersion: getambassador.io/v1
+kind: Mapping
+metadata:
+  name: acme-challenge-mapping-dev
+  namespace: ambassador
+spec:
+  prefix: /.well-known/acme-challenge
+  rewrite: ""
+  host: "dev\\..*"
+  host_regex: true
+  service: acme-challenge-service-dev
+  ambassador_id: ambassador-http
