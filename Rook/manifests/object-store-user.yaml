@@ -5,4 +5,4 @@ metadata:
   namespace: rook-ceph
 spec:
   store: object-store
-  displayName: AnalogSea user
+  displayName: "AnalogSea user"

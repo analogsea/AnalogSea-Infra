@@ -1,0 +1,12 @@
+apiVersion: getambassador.io/v1
+kind: Mapping
+metadata:
+  name: rgw-acme-challenge-mapping-staging
+  namespace: ambassador
+spec:
+  prefix: /.well-known/acme-challenge
+  rewrite: ""
+  host: "s3.analogsea.ca"
+  host_regex: true
+  service: acme-challenge-service-dev
+  ambassador_id: ambassador-http
