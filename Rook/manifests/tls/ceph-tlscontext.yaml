@@ -1,0 +1,10 @@
+apiVersion: getambassador.io/v1
+kind: TLSContext
+metadata:
+  name: ceph-tls
+  namespace: ambassador
+spec:
+  hosts:
+  - ceph.analogsea.ca
+  secret: ceph-cert
+  ambassador_id: ambassador-https
