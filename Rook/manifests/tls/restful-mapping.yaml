@@ -1,0 +1,12 @@
+apiVersion: getambassador.io/v1
+kind: Mapping
+metadata:
+  name: restful-external
+  namespace: rook-ceph
+spec:
+  prefix: /
+  # host: "ceph\\..*"
+  host: ceph-restful.analogsea.ca
+  host_regex: true
+  service: https://rook-ceph-restful.rook-ceph:80
+  ambassador_id: ambassador-https

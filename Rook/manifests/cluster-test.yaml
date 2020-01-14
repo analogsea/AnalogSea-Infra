@@ -29,6 +29,8 @@ spec:
     # the pg_autoscaler is only available on nautilus or newer. remove this if testing mimic.
     - name: pg_autoscaler
       enabled: true
+    - name: restful
+      enabled: true
   storage:
     useAllNodes: true
     useAllDevices: false
