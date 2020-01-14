@@ -1,0 +1,10 @@
+apiVersion: getambassador.io/v1
+kind: TLSContext
+metadata:
+  name: restful-tls
+  namespace: ambassador
+spec:
+  hosts:
+  - ceph-restful.analogsea.ca
+  secret: restful-cert
+  ambassador_id: ambassador-https
