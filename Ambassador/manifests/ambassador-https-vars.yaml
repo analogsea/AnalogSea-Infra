@@ -13,5 +13,5 @@ env:
   AMBASSADOR_ID: ambassador-https
 crds:
   create: false
-  keep: false
-  enabled: true
+  keep: true
+  enabled: false
