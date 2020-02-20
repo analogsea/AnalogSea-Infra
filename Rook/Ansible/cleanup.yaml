@@ -1,4 +1,4 @@
-- hosts:           nodes
+- hosts:           all
   gather_facts:    no
   become:          yes
   become_user:     root
@@ -7,3 +7,15 @@
     file:
       path: /var/lib/rook
       state: absent
+
+  - name: Fix disks
+    shell: sgdisk --zap-all /dev/vdb
+    ignore_errors: yes
+
+  - name: Wipe fs
+    shell: wipefs /dev/vdb
+    ignore_errors: yes
+
+  - name: Fix locks
+    shell: ls /dev/mapper/ceph-* | xargs -I% -- dmsetup remove %
+    ignore_errors: yes

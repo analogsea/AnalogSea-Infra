@@ -1,0 +1,9 @@
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: loopback-test
+spec:
+  config: '{
+      "cniVersion": "0.3.0",
+      "type": "loopback"
+    }'

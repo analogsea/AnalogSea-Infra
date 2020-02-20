@@ -1,0 +1,136 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    cloud.weave.works/launcher-info: |-
+      {
+        "original-request": {
+          "url": "/k8s/v1.16/net.yaml?k8s-version=Q2xpZW50IFZlcnNpb246IHZlcnNpb24uSW5mb3tNYWpvcjoiMSIsIE1pbm9yOiIxNyIsIEdpdFZlcnNpb246InYxLjE3LjIiLCBHaXRDb21taXQ6IjU5NjAzYzZlNTAzYzg3MTY5YWVhNjEwNmY1N2I5ZjI0MmY2NGRmODkiLCBHaXRUcmVlU3RhdGU6ImNsZWFuIiwgQnVpbGREYXRlOiIyMDIwLTAxLTIzVDE0OjIxOjU0WiIsIEdvVmVyc2lvbjoiZ28xLjEzLjYiLCBDb21waWxlcjoiZ2MiLCBQbGF0Zm9ybToiZGFyd2luL2FtZDY0In0KU2VydmVyIFZlcnNpb246IHZlcnNpb24uSW5mb3tNYWpvcjoiMSIsIE1pbm9yOiIxNyIsIEdpdFZlcnNpb246InYxLjE3LjEiLCBHaXRDb21taXQ6ImQyMjQ0NzZjZDA3MzBiYWNhMmI2ZTM1N2QxNDQxNzFlZDc0MTkyZDYiLCBHaXRUcmVlU3RhdGU6ImNsZWFuIiwgQnVpbGREYXRlOiIyMDIwLTAxLTE0VDIwOjU2OjUwWiIsIEdvVmVyc2lvbjoiZ28xLjEzLjUiLCBDb21waWxlcjoiZ2MiLCBQbGF0Zm9ybToibGludXgvYW1kNjQifQo=",
+          "date": "Wed Feb 19 2020 21:52:35 GMT+0000 (UTC)"
+        },
+        "email-address": "support@weave.works"
+      }
+    deprecated.daemonset.template.generation: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"DaemonSet","metadata":{"annotations":{"cloud.weave.works/launcher-info":"{\n  \"original-request\": {\n    \"url\": \"/k8s/v1.16/net.yaml?k8s-version=Q2xpZW50IFZlcnNpb246IHZlcnNpb24uSW5mb3tNYWpvcjoiMSIsIE1pbm9yOiIxNyIsIEdpdFZlcnNpb246InYxLjE3LjIiLCBHaXRDb21taXQ6IjU5NjAzYzZlNTAzYzg3MTY5YWVhNjEwNmY1N2I5ZjI0MmY2NGRmODkiLCBHaXRUcmVlU3RhdGU6ImNsZWFuIiwgQnVpbGREYXRlOiIyMDIwLTAxLTIzVDE0OjIxOjU0WiIsIEdvVmVyc2lvbjoiZ28xLjEzLjYiLCBDb21waWxlcjoiZ2MiLCBQbGF0Zm9ybToiZGFyd2luL2FtZDY0In0KU2VydmVyIFZlcnNpb246IHZlcnNpb24uSW5mb3tNYWpvcjoiMSIsIE1pbm9yOiIxNyIsIEdpdFZlcnNpb246InYxLjE3LjEiLCBHaXRDb21taXQ6ImQyMjQ0NzZjZDA3MzBiYWNhMmI2ZTM1N2QxNDQxNzFlZDc0MTkyZDYiLCBHaXRUcmVlU3RhdGU6ImNsZWFuIiwgQnVpbGREYXRlOiIyMDIwLTAxLTE0VDIwOjU2OjUwWiIsIEdvVmVyc2lvbjoiZ28xLjEzLjUiLCBDb21waWxlcjoiZ2MiLCBQbGF0Zm9ybToibGludXgvYW1kNjQifQo=\",\n    \"date\": \"Wed Feb 19 2020 21:52:35 GMT+0000 (UTC)\"\n  },\n  \"email-address\": \"support@weave.works\"\n}"},"labels":{"name":"weave-net"},"name":"weave-net","namespace":"kube-system"},"spec":{"minReadySeconds":5,"selector":{"matchLabels":{"name":"weave-net"}},"template":{"metadata":{"labels":{"name":"weave-net"}},"spec":{"containers":[{"command":["/home/weave/launch.sh"],"env":[{"name":"HOSTNAME","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"spec.nodeName"}}}],"image":"docker.io/weaveworks/weave-kube:2.6.0","name":"weave","readinessProbe":{"httpGet":{"host":"127.0.0.1","path":"/status","port":6784}},"resources":{"requests":{"cpu":"10m"}},"securityContext":{"privileged":true},"volumeMounts":[{"mountPath":"/weavedb","name":"weavedb"},{"mountPath":"/host/opt","name":"cni-bin"},{"mountPath":"/host/home","name":"cni-bin2"},{"mountPath":"/host/etc","name":"cni-conf"},{"mountPath":"/host/var/lib/dbus","name":"dbus"},{"mountPath":"/lib/modules","name":"lib-modules"},{"mountPath":"/run/xtables.lock","name":"xtables-lock"}]},{"env":[{"name":"HOSTNAME","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"spec.nodeName"}}}],"image":"docker.io/weaveworks/weave-npc:2.6.0","name":"weave-npc","resources":{"requests":{"cpu":"10m"}},"securityContext":{"privileged":true},"volumeMounts":[{"mountPath":"/run/xtables.lock","name":"xtables-lock"}]}],"hostNetwork":true,"hostPID":true,"restartPolicy":"Always","securityContext":{"seLinuxOptions":{}},"serviceAccountName":"weave-net","tolerations":[{"effect":"NoSchedule","operator":"Exists"}],"volumes":[{"hostPath":{"path":"/var/lib/weave"},"name":"weavedb"},{"hostPath":{"path":"/opt"},"name":"cni-bin"},{"hostPath":{"path":"/home"},"name":"cni-bin2"},{"hostPath":{"path":"/etc"},"name":"cni-conf"},{"hostPath":{"path":"/var/lib/dbus"},"name":"dbus"},{"hostPath":{"path":"/lib/modules"},"name":"lib-modules"},{"hostPath":{"path":"/run/xtables.lock","type":"FileOrCreate"},"name":"xtables-lock"}]}},"updateStrategy":{"type":"RollingUpdate"}}}
+  creationTimestamp: "2020-02-19T21:52:36Z"
+  generation: 1
+  labels:
+    name: weave-net
+  name: weave-net
+  namespace: kube-system
+  resourceVersion: "10001"
+  selfLink: /apis/apps/v1/namespaces/kube-system/daemonsets/weave-net
+  uid: db643c45-65cd-4e6d-a228-307b20223353
+spec:
+  minReadySeconds: 5
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      name: weave-net
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: weave-net
+    spec:
+      containers:
+      - command:
+        - /home/weave/launch.sh
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: EXPECT_NPC
+          value: "0"
+        image: docker.io/weaveworks/weave-kube:2.6.0
+        imagePullPolicy: IfNotPresent
+        name: weave
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            host: 127.0.0.1
+            path: /status
+            port: 6784
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          requests:
+            cpu: 10m
+        securityContext:
+          privileged: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /weavedb
+          name: weavedb
+        - mountPath: /host/opt
+          name: cni-bin
+        - mountPath: /host/home
+          name: cni-bin2
+        - mountPath: /host/etc
+          name: cni-conf
+        - mountPath: /host/var/lib/dbus
+          name: dbus
+        - mountPath: /lib/modules
+          name: lib-modules
+        - mountPath: /run/xtables.lock
+          name: xtables-lock
+      dnsPolicy: ClusterFirst
+      hostNetwork: true
+      hostPID: true
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        seLinuxOptions: {}
+      serviceAccount: weave-net
+      serviceAccountName: weave-net
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      volumes:
+      - hostPath:
+          path: /var/lib/weave
+          type: ""
+        name: weavedb
+      - hostPath:
+          path: /opt
+          type: ""
+        name: cni-bin
+      - hostPath:
+          path: /home
+          type: ""
+        name: cni-bin2
+      - hostPath:
+          path: /etc
+          type: ""
+        name: cni-conf
+      - hostPath:
+          path: /var/lib/dbus
+          type: ""
+        name: dbus
+      - hostPath:
+          path: /lib/modules
+          type: ""
+        name: lib-modules
+      - hostPath:
+          path: /run/xtables.lock
+          type: FileOrCreate
+        name: xtables-lock
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+status:
+  currentNumberScheduled: 3
+  desiredNumberScheduled: 3
+  numberAvailable: 3
+  numberMisscheduled: 0
+  numberReady: 3
+  observedGeneration: 1
+  updatedNumberScheduled: 3

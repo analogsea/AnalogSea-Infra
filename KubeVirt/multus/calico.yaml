@@ -1,0 +1,38 @@
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: calico-second-net
+spec:
+  config: '{
+    "cniVersion": "0.3.1",
+    "plugins": [
+      {
+        "type": "calico",
+        "log_level": "info",
+        "datastore_type": "kubernetes",
+        "nodename": "clement-kube-node-1",
+        "mtu": 1400,
+        "ipam": {
+            "type": "calico-ipam"
+        },
+        "policy": {
+            "type": "k8s"
+        },
+        "kubernetes": {
+            "kubeconfig": "/etc/cni/net.d/calico-kubeconfig"
+        },
+        "container_settings": {
+          "allow_ip_forwarding": true
+        }
+      },
+      {
+        "type": "portmap",
+        "snat": true,
+        "capabilities": {"portMappings": true}
+      },
+      {
+        "type": "bandwidth",
+        "capabilities": {"bandwidth": true}
+      }
+    ]
+  }'

@@ -1,0 +1,13 @@
+kubectl create namespace kubevirt
+kubectl create configmap -n kubevirt kubevirt-config  --from-literal debug.useEmulation=true --from-literal feature-gates="LiveMigration"
+kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.25.0/kubevirt-operator.yaml
+kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v0.25.0/kubevirt-cr.yaml
+kubectl -n kubevirt wait kv kubevirt --for condition=Available --timeout=-1s
+
+export VERSION=$(curl -s https://github.com/kubevirt/containerized-data-importer/releases/latest | grep -o "v[0-9]\.[0-9]*\.[0-9]*")
+kubectl create -f https://github.com/kubevirt/containerized-data-importer/releases/download/$VERSION/cdi-operator.yaml
+kubectl create -f https://github.com/kubevirt/containerized-data-importer/releases/download/$VERSION/cdi-cr.yaml
+
+#kubectl create -f https://github.com/intel/multus-cni/blob/master/images/multus-daemonset.yml
+
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"

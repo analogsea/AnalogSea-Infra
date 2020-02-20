@@ -5,6 +5,7 @@ metadata:
   labels:
     kubevirt.io/vm: ubuntuvm
   name: ubuntuvm
+  namespace: default
 spec:
   running: true
   template:

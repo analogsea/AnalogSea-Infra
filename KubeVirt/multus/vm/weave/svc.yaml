@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-vm-ssh
+spec:
+  ports:
+  - name: test-vm-ssh
+    protocol: TCP
+    port: 22
+    targetPort: 22
+    nodePort: 30200
+  selector:
+    kubevirt.io/vm: 1604vm
+  type: NodePort

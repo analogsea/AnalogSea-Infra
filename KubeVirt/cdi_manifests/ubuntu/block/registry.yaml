@@ -1,11 +1,12 @@
 apiVersion: cdi.kubevirt.io/v1alpha1
 kind: DataVolume
 metadata:
-  name: ubuntu1804-template
+  name: ubuntu1604-block-template
+  namespace: default
 spec:
   source:
-    http:
-      url: "https://cloud-images.ubuntu.com/releases/bionic/release/ubuntu-18.04-server-cloudimg-amd64.img"
+    registry:
+      url: "docker://camelcasenotation/ubuntu1604-containerdisk"
   pvc:
     storageClassName: rook-ceph-block
     volumeMode: Block

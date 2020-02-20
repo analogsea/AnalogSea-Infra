@@ -1,0 +1,57 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  name: flannel-2
+  namespace: default
+spec:
+  runStrategy: Manual
+  template:
+    metadata:
+      labels:
+        kubevirt.io/name: flannel-2
+        # debugLogs: "true"
+    spec:
+      domain:
+        devices:
+          autoattachPodInterface: true # true by default, explicitly setting for clarity
+          disks:
+          - name: bootdisk
+            disk:
+              bus: virtio
+          - name: cloud-init
+            disk:
+              bus: virtio
+          interfaces:
+          - name: default
+            masquerade: {}
+          - name: multus-loopback
+            bridge: {}
+        resources:
+          requests:
+            memory: 2Gi
+            cpu: 1
+      terminationGracePeriodSeconds: 0
+      networks:
+      - name: default
+        pod: {}
+      - name: multus-loopback
+        multus:
+          networkName: flannel-test
+      volumes:
+      - name: bootdisk
+        containerDisk:
+          image: camelcasenotation/ubuntu1604-containerdisk:latest
+      - name: cloud-init
+        cloudInitNoCloud:
+          userData: |-
+            #cloud-config
+            users:
+              - name: root
+                ssh-authorized-keys:
+                  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKmrBwsfCZbesEE75ZImJPNgnwzn/9Zk+O0nSTLOJQPUV+VuqrBenHMCq6NqIhLTdVhvftf0EFJVX7JpeLsGyGmkzFinE+zP40z9xOUozcYQoDGj3ibdr22mBh2nVe1RjKejRKYKJT5TS6Yn0O91f0XPVGB/y6v2gqEeEm7W/mmed15XdeWjXrlV9jaaJKbUJqGUy4srs8ynQl3nCTofAzxiX+PErNGpAKHIahg/iixeww/D7m/fwKkH/MhOtlSQVdjE5Tm6RiIbFtpfgBLtoAoq4yTe2oMCof3gtaF+Y6CvX//INh/ocUyhL0umiRIG25mKMrcqeypiQtni7kJKi7 cklliaw@edu.uwaterloo.ca
+            ssh_pwauth: True
+            password: password
+            chpasswd:
+              expire: False
+              list: |-
+                 root:password

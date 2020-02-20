@@ -1,11 +1,13 @@
 apiVersion: cdi.kubevirt.io/v1alpha1
 kind: DataVolume
 metadata:
-  name: ubuntu1804-template
+  name: ubuntu-1604-block
+  namespace: default
 spec:
   source:
-    http:
-      url: "https://cloud-images.ubuntu.com/releases/bionic/release/ubuntu-18.04-server-cloudimg-amd64.img"
+    pvc:
+      namespace: default
+      name: ubuntu1604-block-template
   pvc:
     storageClassName: rook-ceph-block
     volumeMode: Block
@@ -13,4 +15,4 @@ spec:
       - ReadWriteOnce
     resources:
       requests:
-        storage: 15Gi
+        storage: 20Gi

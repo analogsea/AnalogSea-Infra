@@ -1,17 +1,17 @@
 apiVersion: cdi.kubevirt.io/v1alpha1
 kind: DataVolume
 metadata:
-  name: ubuntu-18.04
+  name: test
+  namespace: default
 spec:
   source:
     pvc:
       namespace: default
-      name: ubuntu1804-template
+      name: ubuntu1604-file-template
   pvc:
     storageClassName: rook-ceph-block
-    volumeMode: Block
     accessModes:
-      - ReadWriteOnce
+    - ReadWriteOnce
     resources:
       requests:
         storage: 20Gi

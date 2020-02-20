@@ -1,0 +1,7 @@
+{
+    "name": "kubevirt",
+    "description": "Kubernetes Virtual Machine operator",
+    "version": "v1.0",
+    "namespace": "kubevirt",
+    "script": "kubevirt.yaml"
+}
