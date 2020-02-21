@@ -34,7 +34,7 @@ spec:
         resources:
           requests:
             memory: 2Gi
-            cpu: 2
+            cpu: 1
       terminationGracePeriodSeconds: 0
       networks:
       - name: default
