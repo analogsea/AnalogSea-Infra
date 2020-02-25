@@ -26,12 +26,10 @@ spec:
           rng: {}
           # blockMultiQueue: true
           disks:
-          - name: datavolumedisk1
-            disk:
-              bus: virtio
+          - name: boot
+            disk: {}
           - name: cd1
-            disk:
-              bus: virtio
+            disk: {}
         resources:
           requests:
             memory: 2Gi
@@ -44,9 +42,9 @@ spec:
         multus:
           networkName: weave-test
       volumes:
-      - name: datavolumedisk1
+      - name: boot
         dataVolume:
-          name: ubuntu-16.04-disk-1
+          name: ubuntu1604-template
       - name: cd1
         cloudInitNoCloud:
           userData: |
@@ -61,19 +59,3 @@ spec:
               expire: False
               list: |
                  root:password
-
-  dataVolumeTemplates:
-  - metadata:
-      name: ubuntu-16.04-disk-1
-      namespace: default
-    spec:
-      source:
-        registry:
-          url: "docker://camelcasenotation/ubuntu1604-containerdisk"
-      pvc:
-        storageClassName: rook-ceph-fs
-        accessModes:
-        - ReadWriteMany
-        resources:
-          requests:
-            storage: 15Gi

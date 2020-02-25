@@ -4,7 +4,7 @@ metadata:
   name: test-vm-1
   namespace: default
 spec:
-  runStrategy: Manual
+  runStrategy: Always
   template:
     metadata:
       labels:
@@ -24,7 +24,7 @@ spec:
           interfaces:
           - name: default
             masquerade: {}
-          - name: multus-loopback
+          - name: multus
             bridge: {}
         resources:
           requests:
@@ -34,9 +34,9 @@ spec:
       networks:
       - name: default
         pod: {}
-      - name: multus-loopback
+      - name: multus
         multus:
-          networkName: flannel-test
+          networkName: weave-test
       volumes:
       - name: bootdisk
         containerDisk:

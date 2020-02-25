@@ -1,0 +1,18 @@
+apiVersion: cdi.kubevirt.io/v1alpha1
+kind: DataVolume
+metadata:
+  name: ubuntu-16.04-disk-2
+  namespace: default
+spec:
+  source:
+    pvc:
+      namespace: default
+      name: ubuntu-16.04-disk-1
+  pvc:
+    storageClassName: rook-ceph-fs
+    # volumeMode: Block
+    accessModes:
+      - ReadWriteMany
+    resources:
+      requests:
+        storage: 20Gi
