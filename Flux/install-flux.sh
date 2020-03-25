@@ -3,15 +3,12 @@ cd "${0%/*}"
 kubectl apply -f manifests/flux_namespace.yaml
 helm repo add fluxcd https://charts.fluxcd.io
 
-gpg --export-secret-keys --armor | kubectl create secret generic flux-gpg-signing-key -n flux --from-file=flux.asc=/dev/stdin
+./create-gpg-secret.sh
 
-GPG_KEY_ID=$(gpg --list-secret-keys --with-colons 2> /dev/null | grep '^sec:' | cut --delimiter ':' --fields 5 | cut -d$ '\n' --fields 2)
-
-export GPG_KEY_ID
-
-cat templates/flux_vars.yaml.template | envsubst > manifests/flux_vars.yaml
-
-if [ -f "manifests/sealed-flux-git-ssh-key.yaml" ]; then
+if [[ -f "manifests/flux-git-ssh-key.yaml" ]]; then
+  kubectl apply -f manifests/flux-git-ssh-key.yaml
+  sleep 2
+elif [[ -f "manifests/sealed-flux-git-ssh-key.yaml" ]]; then
   kubectl apply -f manifests/sealed-flux-git-ssh-key.yaml
   sleep 2
 fi

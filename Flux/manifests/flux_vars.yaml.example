@@ -1,0 +1,21 @@
+git:
+  url: X
+  branch: master
+  path: namespaces,workloads
+  user: X
+  email: X
+  signingKey: X-long-key-ID
+  secretName: flux-git-ssh-key
+  pollInterval: "2s"
+  ciSkip: true
+
+registry:
+  pollInterval: "30s"
+  rps: "1000"
+  burst: "250"
+
+gpgKeys:
+  secretName: flux-gpg-signing-key
+
+syncGarbageCollection:
+  enabled: true
