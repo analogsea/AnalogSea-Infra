@@ -10,7 +10,7 @@ git:
   ciSkip: true
 
 registry:
-  pollInterval: "5s"
+  pollInterval: "30s"
   rps: "1000"
   burst: "250"
 
