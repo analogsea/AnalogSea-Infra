@@ -9,7 +9,7 @@ kubectl apply --validate=false -f manifests/00-crds.yaml
 # helm repo update
 
 # Install the cert-manager Helm chart
-helm install cert-manager jetstack/cert-manager -n ambassador --version v0.12.0
+helm install cert-manager jetstack/cert-manager -n ambassador --version v0.14.0
 
 
 kubectl wait --for=condition=available deployment/cert-manager-webhook -n ambassador > /dev/null 2>&1
