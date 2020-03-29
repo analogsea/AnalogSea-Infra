@@ -9,4 +9,4 @@ spec:
   host: ceph-restful.analogsea.ca
   host_regex: true
   service: https://rook-ceph-restful.rook-ceph:80
-  # ambassador_id: ambassador-https
+  ambassador_id: ambassador-https

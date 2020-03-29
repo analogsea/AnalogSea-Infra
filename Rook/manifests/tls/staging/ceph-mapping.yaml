@@ -1,12 +1,12 @@
 apiVersion: getambassador.io/v1
 kind: Mapping
 metadata:
-  name: rgw-external
+  name: ceph-external
   namespace: rook-ceph
 spec:
   prefix: /
   # host: "ceph\\..*"
-  host: s3.analogsea.ca
+  host: ceph.analogsea.ca
   host_regex: true
-  service: rook-ceph-rgw-object-store.rook-ceph:80
-  # ambassador_id: ambassador-https
+  service: rook-ceph-mgr-dashboard.rook-ceph:7000
+  ambassador_id: ambassador-https

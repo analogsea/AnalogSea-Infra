@@ -9,4 +9,4 @@ spec:
   host: s3.analogsea.ca
   host_regex: true
   service: rook-ceph-rgw-object-store.rook-ceph:80
-  # ambassador_id: ambassador-https
+  ambassador_id: ambassador-https

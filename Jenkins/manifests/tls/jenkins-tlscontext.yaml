@@ -7,4 +7,4 @@ spec:
   hosts:
   - jenkins.analogsea.ca
   secret: jenkins-cert
-  ambassador_id: ambassador-https
+  # ambassador_id: ambassador-https

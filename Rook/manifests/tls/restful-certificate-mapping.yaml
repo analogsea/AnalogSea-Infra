@@ -1,12 +1,12 @@
 apiVersion: getambassador.io/v1
 kind: Mapping
 metadata:
-  name: restful-acme-challenge-mapping-staging
+  name: restful-acme-challenge-mapping-prod
   namespace: ambassador
 spec:
   prefix: /.well-known/acme-challenge
   rewrite: ""
   host: "ceph-restful.analogsea.ca"
   host_regex: true
-  service: acme-challenge-service-dev
+  service: acme-challenge-service-prod
   ambassador_id: ambassador-http

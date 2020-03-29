@@ -22,7 +22,7 @@ spec:
   - s3.analogsea.ca
   # Issuer references are always required.
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-prod
     # We can reference ClusterIssuers by changing the kind here.
     # The default value is Issuer (i.e. a locally namespaced Issuer)
     kind: ClusterIssuer

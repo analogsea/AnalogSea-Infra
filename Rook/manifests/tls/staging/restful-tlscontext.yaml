@@ -7,5 +7,4 @@ spec:
   hosts:
   - ceph-restful.analogsea.ca
   secret: restful-cert
-  # ambassador_id: ambassador-https
-  redirect_cleartext_from: 8080
+  ambassador_id: ambassador-https

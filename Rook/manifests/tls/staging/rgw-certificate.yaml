@@ -1,11 +1,11 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
-  name: ceph
+  name: rgw
   namespace: ambassador
 spec:
   # Secret names are always required.
-  secretName: ceph-cert
+  secretName: rgw-cert
   duration: 2160h # 90d
   renewBefore: 360h # 15d
   organization:
@@ -19,10 +19,10 @@ spec:
     - client auth
   # At least one of a DNS Name, USI SAN, or IP address is required.
   dnsNames:
-  - ceph.analogsea.ca
+  - s3.analogsea.ca
   # Issuer references are always required.
   issuerRef:
-    name: letsencrypt-prod
+    name: letsencrypt-staging
     # We can reference ClusterIssuers by changing the kind here.
     # The default value is Issuer (i.e. a locally namespaced Issuer)
     kind: ClusterIssuer

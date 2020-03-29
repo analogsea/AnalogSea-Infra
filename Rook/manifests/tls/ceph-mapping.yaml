@@ -9,4 +9,4 @@ spec:
   host: ceph.analogsea.ca
   host_regex: true
   service: rook-ceph-mgr-dashboard.rook-ceph:7000
-  ambassador_id: ambassador-https
+  # ambassador_id: ambassador-https
