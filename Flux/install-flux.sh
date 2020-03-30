@@ -3,8 +3,6 @@ cd "${0%/*}"
 kubectl apply -f manifests/flux_namespace.yaml
 helm repo add fluxcd https://charts.fluxcd.io
 
-./create-gpg-secret.sh
-
 if [[ -f "manifests/flux-git-ssh-key.yaml" ]]; then
   kubectl apply -f manifests/flux-git-ssh-key.yaml
   sleep 2
