@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: csicephfs-demo-pod
+spec:
+  containers:
+   - name: web-server
+     image: nginx
+     volumeMounts:
+      - name: fs
+        mountPath: /var/lib/www/html
+      - name: block
+        mountPatch: /mnt/block
+  volumes:
+  - name: fs
+    persistentVolumeClaim:
+      claimName: pvc-fs
+      readOnly: false
+  - name: block
+    persistentVolumeClaim:
+      claimName: pvc-block
+      readOnly: false

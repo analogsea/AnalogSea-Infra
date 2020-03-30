@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-fs
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: rook-ceph-fs
+  resources:
+    requests:
+      storage: 1Gi

@@ -7,3 +7,21 @@
     file:
       path: /var/lib/rook
       state: absent
+
+  - name: Fix disks
+    shell: sgdisk --zap-all /dev/sdb
+    ignore_errors: yes
+
+  - name: Wipe fs
+    shell: wipefs /dev/sdb
+    ignore_errors: yes
+
+  - name: Fix locks
+    shell: ls /dev/mapper/ceph-* | xargs -I% -- dmsetup remove %
+    ignore_errors: yes
+
+  - name: Delete clutter
+    shell: rm -rf /dev/ceph-*
+    args:
+      warn: no
+    ignore_errors: yes

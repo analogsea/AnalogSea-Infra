@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: rook-config-override
+  namespace: rook-ceph
+data:
+  config: |
+    [global]
+    mon_max_pg_per_osd = 10000
+    osd_max_pg_per_osd_hard_ratio = 2
