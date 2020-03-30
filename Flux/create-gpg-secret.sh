@@ -4,8 +4,9 @@ if [ "$#" -ne 1 ]; then
   echo -n "Usage: create-gpg-secret.sh "
   tput smul
   tput bold
-  echo "email"
+  echo -n "email"
   tput sgr0
+  echo
   exit 1
 
 else
