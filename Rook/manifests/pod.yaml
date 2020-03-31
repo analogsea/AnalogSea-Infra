@@ -3,19 +3,32 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: csicephfs-demo-pod
+  namespace: default
 spec:
   containers:
-   - name: web-server
-     image: nginx
-     volumeMounts:
-      - name: fs
-        mountPath: /var/lib/www/html
-      - name: block
-        mountPatch: /mnt/block
+  - name: ubuntu-tools
+    image: ubuntu:18.04
+    command:
+    - "tail"
+    args:
+    - "-f"
+    - "/dev/null"
+    volumeMounts:
+    - name: fs
+      mountPath: /mnt/fs
+    - name: rbd
+      mountPath: /mnt/rbd
+    volumeDevices:
+    - name: block
+      devicePath: /dev/block
   volumes:
   - name: fs
     persistentVolumeClaim:
       claimName: pvc-fs
+      readOnly: false
+  - name: rbd
+    persistentVolumeClaim:
+      claimName: pvc-rbd
       readOnly: false
   - name: block
     persistentVolumeClaim:
