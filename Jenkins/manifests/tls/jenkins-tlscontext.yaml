@@ -8,3 +8,4 @@ spec:
   - jenkins.analogsea.ca
   secret: jenkins-cert
   # ambassador_id: ambassador-https
+  redirect_cleartext_from: 8080

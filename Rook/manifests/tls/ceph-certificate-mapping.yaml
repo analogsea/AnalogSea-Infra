@@ -9,4 +9,4 @@ spec:
   host: "ceph.analogsea.ca"
   host_regex: true
   service: acme-challenge-service-prod
-  ambassador_id: ambassador-http
+  # ambassador_id: ambassador-http

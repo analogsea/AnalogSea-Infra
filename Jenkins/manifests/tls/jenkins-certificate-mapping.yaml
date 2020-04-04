@@ -9,4 +9,4 @@ spec:
   host: "jenkins.analogsea.ca"
   host_regex: true
   service: acme-challenge-service-dev
-  ambassador_id: ambassador-http
+  # ambassador_id: ambassador-http
