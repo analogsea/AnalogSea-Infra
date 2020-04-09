@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v2
+kind: Host
+metadata:
+  name: rgw
+  namespace: rook-ceph
+spec:
+  hostname: s3.analogsea.ca
+  acmeProvider:
+    email: cklliaw@uwaterloo.ca

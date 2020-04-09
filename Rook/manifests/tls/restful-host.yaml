@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v2
+kind: Host
+metadata:
+  name: restful
+  namespace: rook-ceph
+spec:
+  hostname: restful.analogsea.ca
+  acmeProvider:
+    email: cklliaw@uwaterloo.ca

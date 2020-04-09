@@ -6,3 +6,6 @@ metadata:
 spec:
   hosts:
   - ceph.analogsea.ca
+  secret: ceph-cert
+  # ambassador_id: ambassador-https
+  redirect_cleartext_from: 8080

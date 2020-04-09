@@ -6,3 +6,6 @@ metadata:
 spec:
   hosts:
   - s3.analogsea.ca
+  secret: rgw-cert
+  # ambassador_id: ambassador-https
+  redirect_cleartext_from: 8080
