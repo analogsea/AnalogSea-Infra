@@ -1,8 +1,9 @@
 apiVersion: getambassador.io/v1
 kind: TLSContext
 metadata:
-  name: ceph-tls
-  namespace: ambassador
+  name: ceph-context
+  namespace: rook-ceph
 spec:
   hosts:
   - ceph.analogsea.ca
+  secret: ceph.analogsea.ca

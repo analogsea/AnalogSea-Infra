@@ -1,8 +1,9 @@
 apiVersion: getambassador.io/v1
 kind: TLSContext
 metadata:
-  name: rgw-tls
-  namespace: ambassador
+  name: rgw-context
+  namespace: rook-ceph
 spec:
   hosts:
   - s3.analogsea.ca
+  secret: s3.analogsea.ca

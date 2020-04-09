@@ -1,8 +1,9 @@
 apiVersion: getambassador.io/v1
 kind: TLSContext
 metadata:
-  name: restful-tls
-  namespace: ambassador
+  name: restful-context
+  namespace: rook-ceph
 spec:
   hosts:
   - ceph-restful.analogsea.ca
+  secret: ceph-restful.analogsea.ca
