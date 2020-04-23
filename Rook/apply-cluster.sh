@@ -35,6 +35,7 @@ kubectl apply -f manifests/cephfs-pools.yaml
 kubectl apply -f manifests/block-pools.yaml
 kubectl apply -f manifests/toolbox.yaml
 kubectl apply -f manifests/storageclasses.yaml
+kubectl apply -f manifests/snapshotclasses.yaml
 
 kubectl wait --for=condition=available deployment/rook-ceph-rgw-object-store-a -n rook-ceph > /dev/null 2>&1
 EXIT_CODE=$?
