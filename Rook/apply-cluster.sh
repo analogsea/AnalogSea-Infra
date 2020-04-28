@@ -49,3 +49,4 @@ done
 echo "rgw created, continuing..."
 
 kubectl apply -f manifests/object-store-user.yaml
+./set-pool.sh

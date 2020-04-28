@@ -5,8 +5,8 @@ metadata:
   namespace: rook-ceph
 spec:
   cephVersion:
-    image: ceph/ceph:v14.2.8
-    # image: ceph/ceph:v15.2.0 Unsupported, waiting for Rook 1.3
+    # image: ceph/ceph:v14.2.8
+    image: ceph/ceph:v15.2.0-20200324
     allowUnsupported: true
   dataDirHostPath: /var/lib/rook
   skipUpgradeChecks: false
